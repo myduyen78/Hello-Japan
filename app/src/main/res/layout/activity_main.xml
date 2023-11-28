@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="edu.hanu.a1_2001040051.AlphabetViewModel" />
+        <variable
+            name="viewModel"
+            type="AlphabetViewModel" />
+
+        <import type="edu.hanu.a1_2001040051.WordAdapter" />
+        <variable
+            name="wordAdapter"
+            type="WordAdapter" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="@dimen/padding_normal"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.94" />
+
+        <Button
+            android:onClick="@{() -> viewModel.show(wordAdapter,txtTitle,`ka`,kataBtn,hiraBtn)}"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/teal_700"
+            android:id="@+id/kataBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/katakana"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+        <Button
+            android:onClick="@{() -> viewModel.show(wordAdapter,txtTitle,`hi`,hiraBtn,kataBtn)}"
+            android:id="@+id/hiraBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/btn_on"
+            android:text="@string/hiragana"
+            android:layout_marginEnd="@dimen/cardview_compat_inset_shadow"
+            android:textColor="@color/teal_700"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/kataBtn"
+            app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+        <TextView
+            android:text="@string/hiragana"
+            android:textColor="@color/item_back"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cardview_compat_inset_shadow"
+            android:background="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerWord"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerWord"
+            app:layout_constraintStart_toStartOf="@+id/recyclerWord" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cardview_compat_inset_shadow"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerWord"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerWord"
+            app:layout_constraintStart_toStartOf="@+id/recyclerWord" />
+
+        <View
+            android:layout_width="@dimen/cardview_compat_inset_shadow"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/hiraBtn"
+            app:layout_constraintStart_toStartOf="@+id/recyclerWord"
+            app:layout_constraintTop_toTopOf="@+id/recyclerWord" />
+        <View
+            android:layout_width="@dimen/cardview_compat_inset_shadow"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/hiraBtn"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerWord"
+            app:layout_constraintTop_toTopOf="@+id/recyclerWord" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="@dimen/padding_normal"
+            android:adapter="@{wordAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="5"
+            android:id="@+id/recyclerWord"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/hiraBtn"
+            app:layout_constraintTop_toBottomOf="@id/txtTitle"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

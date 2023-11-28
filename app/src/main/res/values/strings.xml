@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HelloJapan</string>
+    <string name="katakana">Katakana</string>
+    <string name="hiragana">Hiragana</string>
+</resources>
